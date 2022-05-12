@@ -19,9 +19,11 @@ export default function Home() {
   return `<button type="submit">Delete</button>`;
 }
 
-const toCoinsDetail = ()=>{
-  console.log("clicked");
-  navigate('coin-list')
+const toCoinsDetail ={
+  onClick: (e) => {
+    console.log("clicked");
+  }
+  // navigate('coin-list')
 }
 
 const handleAPI = (URL)=>{
@@ -31,6 +33,7 @@ const handleAPI = (URL)=>{
         for (let i = 0; i < data.length; i++) {
           data[i].is_new = "True"
         }
+        console.log(data[0]);
         return setCoins(data)
       })
 }
@@ -41,7 +44,9 @@ const handleAPI = (URL)=>{
       {dataField : "rank", text:'Rank'},
       {dataField : "type", text:'Type'},
       {dataField : "is_new", text:"Active"},
-      {dataField : "button", rowEvents:{buttonFormatter}, text:'Action'}
+      {dataField : "", text:'Action', formatter:(rowContent, row)=>{
+        return (<Button sty>delete</Button>)
+      }}
   ]
   return (
     <div>
@@ -54,6 +59,7 @@ const handleAPI = (URL)=>{
         
     </Form>
         <BootstrapTable 
+            bootstrap4
             keyField="id"
             data={coins}
             columns={columns}

@@ -1,0 +1,18 @@
+.table-home{
+  position: absolute;
+  width: 1188px;
+  height: 499px;
+  left: 126px;
+  top: 175px;
+
+  /* Primary / Sibodas */
+
+  background: #ffffff;
+  /* Grey Metallic */
+
+  border: 0.5px solid #e3ebf4;
+  /* blue shadow */
+
+  box-shadow: 0px 4px 8px rgba(0, 148, 255, 0.25);
+  border-radius: 10px;
+}

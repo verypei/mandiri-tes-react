@@ -1,42 +1,58 @@
 import React, { useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import { Navbar } from "../components/Navbar";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import "../styles/Home.css";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import * as ReactBootstrap from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap';
+import SearchBar from "../components/SearchBar"
 
 
 export default function Home() {
   const [coins, setCoins] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    let URL = `https://api.coinpaprika.com/v1/coins/`;
-    fetch(`${URL}`)
+  //   --------------------------------------------------PAGINATION SET UP-------------------------------------------
+  function buttonFormatter(cell, row){
+  return `<button type="submit">Delete</button>`;
+}
+
+const toCoinsDetail = ()=>{
+  console.log("clicked");
+  navigate('coin-list')
+}
+
+const handleAPI = (URL)=>{
+  fetch(`${URL}`)
       .then((response) => response.json())
       .then((data) => {
         for (let i = 0; i < data.length; i++) {
           data[i].is_new = "True"
         }
         return setCoins(data)
-      });
-  }, []);
-  // ---------------------------------------------------CHANGING FALSE / TRUE
-
-  //   --------------------------------------------------PAGINATION SET UP-------------------------------------------
+      })
+}
   let columns = [
-      {dataField : "id", text:'ID'},
+      {dataField : "id" , text:'ID', rowEvents:{toCoinsDetail}},
       {dataField : "name", text:'Name'},
       {dataField : "symbol", text:'Symbol'},
       {dataField : "rank", text:'Rank'},
-      {dataField : "id", text:'Type'},
+      {dataField : "type", text:'Type'},
       {dataField : "is_new", text:"Active"},
-      {dataField : "", text:'Action'}
+      {dataField : "button", rowEvents:{buttonFormatter}, text:'Action'}
   ]
   return (
     <div>
       <Navbar />
+      <Form className="search-select">
+        <SearchBar handle={handleAPI}/>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Control type="email" placeholder="search" />
+        </Form.Group>
+        
+    </Form>
         <BootstrapTable 
             keyField="id"
             data={coins}

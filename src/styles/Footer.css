@@ -15,28 +15,26 @@
   background: #1d4279;
 }
 .footer-name {
-  /* Kandidat : [nama kamu] */
-
   position: absolute;
-  width: 356.52px;
-  height: 18px;
-  left: 541.16px;
-  top: 733px;
+width: 356.52px;
+height: 18px;
+left: 541.16px;
+top: 733px;
 
-  /* Paragraph / P 3 | Regular | 12px */
+/* Paragraph / P 3 | Regular | 12px */
 
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 150%;
-  /* or 21px */
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 150%;
+/* or 21px */
 
-  display: flex;
-  align-items: center;
-  text-align: center;
+display: flex;
+align-items: center;
+text-align: center;
 
-  /* Primary / WHITE */
+/* Primary / WHITE */
 
-  color: #ffffff;
+color: #FFFFFF;
 }
